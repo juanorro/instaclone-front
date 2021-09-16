@@ -3,7 +3,7 @@ import { ApolloProvider } from '@apollo/client';
 import Auth from './pages/Auth/';
 import { useState, useEffect, useMemo } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { getToken, decodeToken } from './utils/token';
+import { getToken, decodeToken, removeToken } from './utils/token';
 import { AuthContext } from './contexts/AuthContext';
 import { Navigation } from './routes/Navigation';
 
@@ -22,7 +22,8 @@ const App = () => {
   }, [])
 
   const logout = () => {
-    console.log('Deslogueo')
+    removeToken();
+    setAuth(null);
   };
 
   const setUser = (user) => {

@@ -8,6 +8,8 @@ import UserNotFound from '../UserNotFound';
 import ModalBasic from '../Modal/ModalBasic';
 import AvatarForm from '../User/AvatarForm';
 import useAuth from '../../hooks/useAuth';
+import HeaderProfile from './HeaderProfile/HeaderProfile';
+import SettingsForm from '../User/SettingsForm';
 
 const Profile = ({ username }) => {
 
@@ -17,7 +19,7 @@ const Profile = ({ username }) => {
 
     const { auth } = useAuth();
 
-    const { data, loading, error } = useQuery(GET_USER, {
+    const { data, loading, error, refetch } = useQuery(GET_USER, {
         variables: {
             username
         }
@@ -40,6 +42,18 @@ const Profile = ({ username }) => {
                 setChildrenModal( <AvatarForm setShowModal={setShowModal} />)
                 setShowModal(true);
                 break;
+            case 'settings': 
+                setTitleModal('Ajustes de usuario');
+                setChildrenModal(
+                    <SettingsForm 
+                        setShowModal={setShowModal} 
+                        setTitleModal={setTitleModal}
+                        setChildrenModal={setChildrenModal}
+                        getUser={getUser}
+                        refetch={refetch}
+                    />);
+                setShowModal(true)
+                break;
         
             default:
                 break;
@@ -53,9 +67,7 @@ const Profile = ({ username }) => {
                     <Image src={Avatar} avatar onClick={() => username === auth.username && handleModal('avatar')} />
                 </Grid.Column>
                 <Grid.Column width={11} className="profile_right">
-                    <div>
-                        Header Profile
-                    </div> 
+                    <HeaderProfile username={username} auth={auth} handleModal={handleModal}/>
 
                     <div>
                         Followers

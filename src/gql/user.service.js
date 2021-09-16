@@ -10,7 +10,7 @@ export const REGISTER = gql`
             createAt
         }
     }
-`
+`;
 
 export const LOGIN = gql`
     mutation login($input: LoginInput) {
@@ -18,7 +18,7 @@ export const LOGIN = gql`
             token
         }
     }
-`
+`;
 
 export const GET_USER = gql`
     query getUser($id: ID, $username: String) {
@@ -32,7 +32,7 @@ export const GET_USER = gql`
             avatar
         }
     }
-`
+`;
 
 export const UPDATE_AVATAR = gql`
     mutation updateAvatar($file: Upload!) {
@@ -41,4 +41,10 @@ export const UPDATE_AVATAR = gql`
             urlAvatar
         }
     }
-`
+`;
+
+export const UPDATE_USER = gql`
+    mutation ($input: UserUpdateInput) {
+        updateUser(input: $input)
+    }
+`;
