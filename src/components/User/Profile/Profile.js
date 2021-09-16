@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_USER } from '../../gql/user.service'
+import { GET_USER } from '../../../gql/user.service'
 import './Profile.scss';
 import { Grid, Image } from 'semantic-ui-react';
-import Avatar from '../../assets/png/avatar.png';
-import UserNotFound from '../UserNotFound';
-import ModalBasic from '../Modal/ModalBasic';
-import AvatarForm from '../User/AvatarForm';
-import useAuth from '../../hooks/useAuth';
+import Avatar from '../../../assets/png/avatar.png';
+import UserNotFound from '../../UserNotFound';
+import ModalBasic from '../../Modal/ModalBasic';
+import AvatarForm from '../AvatarForm';
+import useAuth from '../../../hooks/useAuth';
 import HeaderProfile from './HeaderProfile/HeaderProfile';
-import SettingsForm from '../User/SettingsForm';
+import SettingsForm from '../SettingsForm';
+import Followers from './Followers';
 
 const Profile = ({ username }) => {
 
@@ -69,9 +70,8 @@ const Profile = ({ username }) => {
                 <Grid.Column width={11} className="profile_right">
                     <HeaderProfile username={username} auth={auth} handleModal={handleModal}/>
 
-                    <div>
-                        Followers
-                    </div>
+                    <Followers username={username} />
+                    
                     <div className="other">
                         <p className="name">{getUser.name}</p>
                         {getUser.siteWeb && (
@@ -83,7 +83,6 @@ const Profile = ({ username }) => {
                         {getUser.description && (
                             <p className="description">{getUser.description}</p>
                         )}
-
 
                     </div>
                 </Grid.Column>
