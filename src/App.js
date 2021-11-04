@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import { getToken, decodeToken, removeToken } from './utils/token';
 import { AuthContext } from './contexts/AuthContext';
 import { Navigation } from './routes/Navigation';
-import { Redirect } from 'react-router';
 
 const App = () => {
 

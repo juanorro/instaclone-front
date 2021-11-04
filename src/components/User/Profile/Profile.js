@@ -12,7 +12,7 @@ import HeaderProfile from './HeaderProfile/HeaderProfile';
 import SettingsForm from '../SettingsForm';
 import Followers from './Followers';
 
-const Profile = ({ username }) => {
+const Profile = ({ username, totalPublications }) => {
 
     const [ showModal, setShowModal] = useState(false);
     const [titileModal, setTitleModal] = useState('');
@@ -40,7 +40,7 @@ const Profile = ({ username }) => {
         switch (type) {
             case 'avatar':
                 setTitleModal('Cambiar foto de perfil');
-                setChildrenModal( <AvatarForm setShowModal={setShowModal} />)
+                setChildrenModal( <AvatarForm setShowModal={setShowModal} auth={auth} />)
                 setShowModal(true);
                 break;
             case 'settings': 
@@ -65,12 +65,12 @@ const Profile = ({ username }) => {
         <>
             <Grid className="profile">
                 <Grid.Column width={5} className="profile_left">
-                    <Image src={Avatar} avatar onClick={() => username === auth.username && handleModal('avatar')} />
+                    <Image src={getUser.avatar ? getUser.avatar : Avatar} avatar onClick={() => username === auth.username && handleModal('avatar')} />
                 </Grid.Column>
                 <Grid.Column width={11} className="profile_right">
                     <HeaderProfile username={username} auth={auth} handleModal={handleModal}/>
 
-                    <Followers username={username} />
+                    <Followers username={username} totalPublications={totalPublications} />
                     
                     <div className="other">
                         <p className="name">{getUser.name}</p>
