@@ -20,3 +20,19 @@ export const GET_ALL_PUBLICATIONS = gql`
     }
 `;
 
+export const GET_PUBLICATIONS_FOLLOWERS = gql`
+    query getPublicationsFollowers {
+        getPublicationsFollowers{
+            id
+            idUser {
+                name
+                username
+                avatar
+            }
+            file
+            typeFile
+            createAt
+        }
+    }
+`;
+
