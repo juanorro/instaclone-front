@@ -6,7 +6,7 @@ import ModalPublication from '../../Modal/ModalPublication';
 const PreviewPublication = ({ publication }) => {
 
     const [showModal, setShowModal] = useState(false);
-    console.log(publication)
+
     return (
         <>
             <div className="preview-publications" onClick={() => setShowModal(true)} >

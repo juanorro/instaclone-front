@@ -6,7 +6,6 @@ import PreviewPublication from './PreviewPublication';
 
 const Publications = ({ getAllPublications }) => {
 
-    console.log(getAllPublications)
     return (
         <div className="publications">
             <h1>Publicaciones</h1>
